@@ -3,7 +3,6 @@ package cmds
 
 import (
 	"fmt"
-	"os"
 	"time"
 
 	"github.com/rs/zerolog/log"
@@ -17,6 +16,7 @@ const (
 )
 
 var (
+	command string
 	timeout time.Duration
 	retry   time.Duration
 )
@@ -28,10 +28,9 @@ var (
 )
 
 var rootCmd = &cobra.Command{
-	Use:  "don [command]",
-	Args: cobra.ExactArgs(1),
+	Use: "don [command]",
 	Run: func(cmd *cobra.Command, args []string) {
-		if err := don.Check(don.Cmd(os.Args[1]), timeout, retry); err != nil {
+		if err := don.Check(don.Cmd(command), timeout, retry); err != nil {
 			log.Fatal().Err(err).Msg("received error")
 		}
 
@@ -50,6 +49,12 @@ var versionCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(versionCmd)
+	rootCmd.Flags().StringVarP(&command, "command", "c", "", "command to run (required)")
+
+	if err := rootCmd.MarkFlagRequired("command"); err != nil {
+		log.Fatal().Err(err).Msg("needs command flag")
+	}
+
 	rootCmd.Flags().DurationVarP(&timeout, "timeout", "t", defaultTimeout, "timeout")
 	rootCmd.Flags().DurationVarP(&retry, "retry", "r", defaultRetry, "retry")
 }
