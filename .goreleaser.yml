@@ -51,3 +51,8 @@ archives:
   - format: binary
     replacements:
       darwin: macos
+
+release:
+  gitea:
+    owner: xsteadfastx
+    name: don
