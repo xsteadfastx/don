@@ -2,7 +2,7 @@
 project_name: "don"
 
 gitea_urls:
-  api: https://git.xsfx.dev/api/v1
+  api: https://git.xsfx.dev/api/v1/
 
 builds:
   - main: ./cmd

@@ -5,6 +5,7 @@ package don
 
 import (
 	"errors"
+	"os"
 	"os/exec"
 	"time"
 
@@ -18,6 +19,9 @@ var errTimeout = errors.New("timeout")
 func Cmd(c string) func() bool {
 	return func() bool {
 		cmd := exec.Command("sh", "-c", c)
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+
 		if err := cmd.Run(); err != nil {
 			log.Warn().Err(err).Msg("cmd has error")
 
