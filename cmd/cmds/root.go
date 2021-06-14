@@ -55,5 +55,6 @@ func init() {
 }
 
 func Execute() error {
+	// nolint:wrapcheck
 	return rootCmd.Execute()
 }
