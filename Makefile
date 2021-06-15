@@ -22,3 +22,12 @@ test:
 tidy:
 	go mod tidy
 	go mod vendor
+
+.PHONY: readme
+readme:
+	goreadme \
+		-title don \
+		-credit=false \
+		-functions \
+		-types \
+		> README.md

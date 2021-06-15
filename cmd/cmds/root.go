@@ -30,7 +30,7 @@ var (
 var rootCmd = &cobra.Command{
 	Use: "don [command]",
 	Run: func(cmd *cobra.Command, args []string) {
-		if err := don.Check(don.Cmd(command), timeout, retry); err != nil {
+		if err := don.Ready(don.Cmd(command), timeout, retry); err != nil {
 			log.Fatal().Err(err).Msg("received error")
 		}
 
