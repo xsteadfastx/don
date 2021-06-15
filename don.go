@@ -60,7 +60,7 @@ import (
 
 var errTimeout = errors.New("timeout")
 
-// Cmd returns a `func() bool` for working with don.Check. It executes a command and
+// Cmd returns a `func() bool` for working with `don.Ready()`. It executes a command and
 // returns a true if everything looks fine or a false if there was some kind of error.
 func Cmd(c string) func() bool {
 	return func() bool {
