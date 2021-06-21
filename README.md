@@ -1,11 +1,11 @@
 # don
 
+[![GoDoc](https://img.shields.io/badge/pkg.go.dev-doc-blue)](http://pkg.go.dev/go.xsfx.dev/don)
+[![Go Report Card](https://goreportcard.com/badge/go.xsfx.dev/don)](https://goreportcard.com/report/go.xsfx.dev/don)
+
 Package don is a little helper if you need to check for the readiness of something.
 This could be a command to run (like ssh) or a `db.Ping()` for check of the readiness
 of a database container.
-
-![Go Reference](https://pkg.go.dev/badge/go.xsfx.dev/don.svg)
-![Build Status](https://ci.xsfx.dev/api/badges/xsteadfastx/don/status.svg)
 
 ## Use as commandline tool
 
@@ -60,14 +60,14 @@ if err := don.Ready(
 
 ## Functions
 
-### func [Cmd](/don.go#L68)
+### func [Cmd](/don.go#L65)
 
 `func Cmd(c string) func() bool`
 
 Cmd returns a `func() bool` for working with `don.Ready()`. It executes a command and
 returns a true if everything looks fine or a false if there was some kind of error.
 
-### func [Ready](/don.go#L86)
+### func [Ready](/don.go#L83)
 
 `func Ready(f func() bool, timeout time.Duration, retry time.Duration) error`
 

@@ -26,7 +26,9 @@ tidy:
 .PHONY: readme
 readme:
 	goreadme \
-		-title don \
+		-import-path go.xsfx.dev/don \
+		-badge-goreportcard \
+		-badge-godoc \
 		-credit=false \
 		-functions \
 		-types \
