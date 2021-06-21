@@ -2,6 +2,9 @@
 // This could be a command to run (like ssh) or a `db.Ping()` for check of the readiness
 // of a database container.
 //
+// (image/Go Reference) https://pkg.go.dev/badge/go.xsfx.dev/don.svg
+// (image/Build Status) https://ci.xsfx.dev/api/badges/xsteadfastx/don/status.svg
+//
 // Use as commandline tool
 //
 // Download the tool from the (download page) https://git.xsfx.dev/xsteadfastx/don/releases.
