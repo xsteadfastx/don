@@ -51,11 +51,33 @@ changelog:
       - "prepares release"
 
 archives:
+  - format: tar.gz
+    replacements:
+      darwin: macos
+
   - format: binary
+    id: only-binary
     replacements:
       darwin: macos
 
 release:
-  gitea:
+  github:
     owner: xsteadfastx
     name: don
+
+brews:
+  - name: don
+    tap:
+      owner: xsteadfastx
+      name: homebrew-tap
+    commit_author:
+      name: Marvin Steadfast
+      email: marvin@xsteadfastx.org
+    homepage: https://git.xsfx.dev/xsteadfastx/don
+    install: |
+      bin.install "don"
+    test: |
+      system "#{bin}/don version"
+
+gomod:
+  proxy: true

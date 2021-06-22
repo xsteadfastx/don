@@ -24,7 +24,7 @@ steps:
       - lint
 
   - name: build
-    image: goreleaser/goreleaser:v0.169.0
+    image: goreleaser/goreleaser:v0.171.0
     commands:
       - make build
     depends_on:
@@ -37,10 +37,10 @@ steps:
           - tag
 
   - name: release
-    image: goreleaser/goreleaser:v0.169.0
+    image: goreleaser/goreleaser:v0.171.0
     environment:
-      GITEA_TOKEN:
-        from_secret: gitea_token
+      GIHUB_TOKEN:
+        from_secret: github_token
     commands:
       - goreleaser release --rm-dist
     depends_on:

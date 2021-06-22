@@ -32,4 +32,5 @@ readme:
 		-credit=false \
 		-functions \
 		-types \
+		-skip-sub-packages \
 		> README.md

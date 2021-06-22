@@ -4,9 +4,12 @@
 //
 // Use as commandline tool
 //
-// Download the tool from the (download page) https://git.xsfx.dev/xsteadfastx/don/releases.
+// Download the tool from the (download page) https://github.com/xsteadfastx/don/releases or
+// install via brew:
 //
-// 	 don -t 15m -r 15s -c "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@container"
+// 	brew tap xsteadfastx/tap https://github.com/xsteadfastx/homebrew-tap
+// 	brew install don
+// 	don -t 15m -r 15s -c "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@container"
 //
 // This example checks every 15 seconds if the ssh container is ready. It would timeout with an
 // error after 15 minutes.
