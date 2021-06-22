@@ -9,9 +9,12 @@ of a database container.
 
 ## Use as commandline tool
 
-Download the tool from the [download page](https://git.xsfx.dev/xsteadfastx/don/releases).
+Download the tool from the [download page](https://github.com/xsteadfastx/don/releases) or
+install via brew:
 
 ```go
+brew tap xsteadfastx/tap [https://github.com/xsteadfastx/homebrew-tap](https://github.com/xsteadfastx/homebrew-tap)
+brew install don
 don -t 15m -r 15s -c "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 root@container"
 ```
 
@@ -60,20 +63,16 @@ if err := don.Ready(
 
 ## Functions
 
-### func [Cmd](/don.go#L65)
+### func [Cmd](/don.go#L68)
 
 `func Cmd(c string) func() bool`
 
 Cmd returns a `func() bool` for working with `don.Ready()`. It executes a command and
 returns a true if everything looks fine or a false if there was some kind of error.
 
-### func [Ready](/don.go#L83)
+### func [Ready](/don.go#L86)
 
 `func Ready(f func() bool, timeout time.Duration, retry time.Duration) error`
 
 Ready takes a function that executes something and returns a bool to indicate if
 something is ready or not. It returns an error if it timeouts.
-
-## Sub Packages
-
-* [cmd](./cmd)
