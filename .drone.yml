@@ -39,7 +39,7 @@ steps:
   - name: release
     image: goreleaser/goreleaser:v0.171.0
     environment:
-      GIHUB_TOKEN:
+      GITHUB_TOKEN:
         from_secret: github_token
     commands:
       - goreleaser release --rm-dist
