@@ -100,7 +100,10 @@ func Ready(f func() bool, timeout time.Duration, retry time.Duration, bar bool) 
 				bar := progressbar.Default(d)
 
 				for i := int64(0); i < d; i++ {
-					bar.Add(1)
+					if err := bar.Add(1); err != nil {
+						log.Error().Err(err).Msg("could not add to bar")
+					}
+
 					time.Sleep(time.Second)
 				}
 			} else {
