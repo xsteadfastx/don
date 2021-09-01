@@ -2,6 +2,8 @@
 // This could be a command to run (like ssh) or a `db.Ping()` for check of the readiness
 // of a database container.
 //
+// (image/readme) ./README.gif
+//
 // Use as commandline tool
 //
 // Download the tool from the (download page) https://github.com/xsteadfastx/don/releases or
@@ -42,8 +44,9 @@
 //
 //			return true
 //		},
-//		10*time.Minute,
-//		30*time.Second,
+//		10*time.Minute, // When to timeout completly.
+//		30*time.Second, // Whats the time between retries.
+//		false, // If you want a progressbar.
 //	); err != nil {
 //		log.Error().Err(err).Msg("received error")
 //		teardown(pool, resource, tmpState.Name())

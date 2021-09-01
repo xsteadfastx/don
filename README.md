@@ -7,6 +7,8 @@ Package don is a little helper if you need to check for the readiness of somethi
 This could be a command to run (like ssh) or a `db.Ping()` for check of the readiness
 of a database container.
 
+![readme](./README.gif)
+
 ## Use as commandline tool
 
 Download the tool from the [download page](https://github.com/xsteadfastx/don/releases) or
@@ -52,8 +54,9 @@ if err := don.Ready(
 
 		return true
 	},
-	10*time.Minute,
-	30*time.Second,
+	10*time.Minute, // When to timeout completly.
+	30*time.Second, // Whats the time between retries.
+	false, // If you want a progressbar.
 ); err != nil {
 	log.Error().Err(err).Msg("received error")
 	teardown(pool, resource, tmpState.Name())
@@ -63,14 +66,14 @@ if err := don.Ready(
 
 ## Functions
 
-### func [Cmd](/don.go#L69)
+### func [Cmd](/don.go#L72)
 
 `func Cmd(c string) func() bool`
 
 Cmd returns a `func() bool` for working with `don.Ready()`. It executes a command and
 returns a true if everything looks fine or a false if there was some kind of error.
 
-### func [Ready](/don.go#L87)
+### func [Ready](/don.go#L90)
 
 `func Ready(f func() bool, timeout time.Duration, retry time.Duration, bar bool) error`
 
