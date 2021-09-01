@@ -9,14 +9,14 @@ steps:
       - git fetch --tags
 
   - name: lint
-    image: golangci/golangci-lint:v1.40.1
+    image: golangci/golangci-lint:v1.42.0
     commands:
       - make lint
     depends_on:
       - tags
 
   - name: test
-    image: golang:1.16
+    image: golang:1.17
     commands:
       - make test
     depends_on:
@@ -24,7 +24,7 @@ steps:
       - lint
 
   - name: build
-    image: goreleaser/goreleaser:v0.171.0
+    image: goreleaser/goreleaser:v0.176.0
     commands:
       - make build
     depends_on:
@@ -37,7 +37,7 @@ steps:
           - tag
 
   - name: release
-    image: goreleaser/goreleaser:v0.171.0
+    image: goreleaser/goreleaser:v0.176.0
     environment:
       GITHUB_TOKEN:
         from_secret: github_token
