@@ -4,5 +4,6 @@ go 1.16
 
 require (
 	github.com/rs/zerolog v1.22.0
+	github.com/schollz/progressbar/v3 v3.8.2
 	github.com/spf13/cobra v1.1.3
 )

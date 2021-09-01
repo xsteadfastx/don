@@ -59,6 +59,7 @@ import (
 	"time"
 
 	"github.com/rs/zerolog/log"
+	"github.com/schollz/progressbar/v3"
 )
 
 var errTimeout = errors.New("timeout")
@@ -83,7 +84,7 @@ func Cmd(c string) func() bool {
 
 // Ready takes a function that executes something and returns a bool to indicate if
 // something is ready or not. It returns an error if it timeouts.
-func Ready(f func() bool, timeout time.Duration, retry time.Duration) error {
+func Ready(f func() bool, timeout time.Duration, retry time.Duration, bar bool) error {
 	chReady := make(chan struct{})
 
 	go func() {
@@ -94,8 +95,18 @@ func Ready(f func() bool, timeout time.Duration, retry time.Duration) error {
 				return
 			}
 
-			<-time.After(retry)
-			log.Info().Msg("retrying")
+			if bar {
+				d := int64(retry / time.Second)
+				bar := progressbar.Default(d)
+
+				for i := int64(0); i < d; i++ {
+					bar.Add(1)
+					time.Sleep(time.Second)
+				}
+			} else {
+				<-time.After(retry)
+				log.Info().Msg("retrying")
+			}
 		}
 	}()
 

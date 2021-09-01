@@ -11,14 +11,16 @@ import (
 )
 
 const (
-	defaultTimeout = 10 * time.Second
-	defaultRetry   = time.Second
+	defaultTimeout     = 10 * time.Second
+	defaultRetry       = time.Second
+	defaultProgressbar = true
 )
 
 var (
-	command string
-	timeout time.Duration
-	retry   time.Duration
+	command     string
+	timeout     time.Duration
+	retry       time.Duration
+	progressbar bool
 )
 
 var (
@@ -30,7 +32,7 @@ var (
 var rootCmd = &cobra.Command{
 	Use: "don [command]",
 	Run: func(cmd *cobra.Command, args []string) {
-		if err := don.Ready(don.Cmd(command), timeout, retry); err != nil {
+		if err := don.Ready(don.Cmd(command), timeout, retry, progressbar); err != nil {
 			log.Fatal().Err(err).Msg("received error")
 		}
 
@@ -57,6 +59,7 @@ func init() {
 
 	rootCmd.Flags().DurationVarP(&timeout, "timeout", "t", defaultTimeout, "timeout")
 	rootCmd.Flags().DurationVarP(&retry, "retry", "r", defaultRetry, "retry")
+	rootCmd.Flags().BoolVarP(&progressbar, "progressbar", "p", defaultProgressbar, "progressbar")
 }
 
 func Execute() error {
